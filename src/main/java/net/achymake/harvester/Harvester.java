@@ -136,7 +136,7 @@ public final class Harvester extends JavaPlugin {
     }
     public static void getLatest(Consumer<String> consumer) {
         try {
-            InputStream inputStream = (new URL("https://api.spigotmc.org/legacy/update.php?resource=" + 0)).openStream();
+            InputStream inputStream = (new URL("https://api.spigotmc.org/legacy/update.php?resource=" + 111033)).openStream();
             Scanner scanner = new Scanner(inputStream);
             if (scanner.hasNext()) {
                 consumer.accept(scanner.next());
