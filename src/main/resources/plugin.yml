@@ -1,0 +1,18 @@
+name: Harvester
+version: '${project.version}'
+main: net.achymake.harvester.Harvester
+api-version: 1.19
+prefix: '${project.name}'
+author: AchyMake
+description: '${project.description}'
+commands:
+  harvester:
+    description: harvester command
+    permission: harvester.command
+permissions:
+  harvester.command:
+    description: harvester command
+    default: op
+  harvester.default:
+    default: op
+    description: allows to use harvester

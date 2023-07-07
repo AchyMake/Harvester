@@ -1,0 +1,19 @@
+CARROTS:
+  enable: true
+  max-age: 7
+  experience:
+    enable: true
+    change: 30
+    amount: 1
+  particle:
+    enable: true
+    type: PARTICLE
+    offsetX: 0.3
+    offsetY: 0.3
+    offsetZ: 0.3
+    count: 25
+  sound:
+    enable: true
+    type: SOUND
+    volume: 0.75F
+    pitch: 1.0F

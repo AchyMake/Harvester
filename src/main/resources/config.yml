@@ -1,0 +1,4 @@
+notify-update:
+  # Notify Plugin Update
+  enable: true
+max-durability: 3
