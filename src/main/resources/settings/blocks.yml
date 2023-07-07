@@ -1,0 +1,72 @@
+MELON:
+  enable: true
+  experience:
+    enable: true
+    chance: 30
+    amount: 1
+  particle:
+    enable: true
+    type: TOTEM
+    offsetX: 0.3
+    offsetY: 0.3
+    offsetZ: 0.3
+    count: 25
+  sound:
+    enable: true
+    type: BLOCK_AMETHYST_BLOCK_BREAK
+    volume: 0.75F
+    pitch: 1.00F
+PUMPKIN:
+  enable: true
+  experience:
+    enable: true
+    chance: 30
+    amount: 1
+  particle:
+    enable: true
+    type: TOTEM
+    offsetX: 0.3
+    offsetY: 0.3
+    offsetZ: 0.3
+    count: 25
+  sound:
+    enable: true
+    type: BLOCK_AMETHYST_BLOCK_BREAK
+    volume: 0.75F
+    pitch: 1.00F
+SUGAR_CANE:
+  enable: true
+  experience:
+    enable: true
+    chance: 30
+    amount: 1
+  particle:
+    enable: true
+    type: TOTEM
+    offsetX: 0.3
+    offsetY: 0.3
+    offsetZ: 0.3
+    count: 25
+  sound:
+    enable: true
+    type: BLOCK_AMETHYST_BLOCK_BREAK
+    volume: 0.75F
+    pitch: 1.00F
+BAMBOO:
+  enable: true
+  experience:
+    enable: true
+    chance: 30
+    amount: 1
+  particle:
+    enable: true
+    type: TOTEM
+    offsetX: 0.3
+    offsetY: 0.3
+    offsetZ: 0.3
+    count: 25
+  sound:
+    enable: true
+    type: BLOCK_AMETHYST_BLOCK_BREAK
+    volume: 0.75F
+    pitch: 1.00F

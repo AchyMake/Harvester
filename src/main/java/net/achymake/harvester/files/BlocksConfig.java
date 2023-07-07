@@ -5,9 +5,9 @@ import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
-import org.bukkit.block.data.Ageable;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ExperienceOrb;
 import org.bukkit.entity.Player;
@@ -45,8 +45,16 @@ public class BlocksConfig {
         }
     }
     public void dropItems(Player player, Block block) {
-        for (ItemStack drops : block.getDrops()) {
-            player.getWorld().dropItem(block.getLocation().add(0.5,0.3,0.5),drops);
+        if (player.getInventory().getItemInMainHand().containsEnchantment(Enchantment.LOOT_BONUS_BLOCKS)) {
+            int amount = player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS);
+            for (ItemStack drops : block.getDrops()) {
+                drops.setAmount(drops.getAmount() + amount);
+                player.getWorld().dropItem(block.getLocation().add(0.5,0.3,0.5), drops);
+            }
+        } else {
+            for (ItemStack drops : block.getDrops()) {
+                player.getWorld().dropItem(block.getLocation().add(0.5,0.3,0.5), drops);
+            }
         }
         block.setType(Material.AIR);
     }

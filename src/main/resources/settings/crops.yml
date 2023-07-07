@@ -3,17 +3,112 @@ CARROTS:
   max-age: 7
   experience:
     enable: true
-    change: 30
+    chance: 30
     amount: 1
   particle:
     enable: true
-    type: PARTICLE
+    type: TOTEM
     offsetX: 0.3
     offsetY: 0.3
     offsetZ: 0.3
     count: 25
   sound:
     enable: true
-    type: SOUND
+    type: BLOCK_AMETHYST_BLOCK_BREAK
     volume: 0.75F
-    pitch: 1.0F
+    pitch: 1.00F
+POTATOES:
+  enable: true
+  max-age: 7
+  experience:
+    enable: true
+    chance: 30
+    amount: 1
+  particle:
+    enable: true
+    type: TOTEM
+    offsetX: 0.3
+    offsetY: 0.3
+    offsetZ: 0.3
+    count: 25
+  sound:
+    enable: true
+    type: BLOCK_AMETHYST_BLOCK_BREAK
+    volume: 0.75F
+    pitch: 1.00F
+WHEAT:
+  enable: true
+  max-age: 7
+  experience:
+    enable: true
+    chance: 30
+    amount: 1
+  particle:
+    enable: true
+    type: TOTEM
+    offsetX: 0.3
+    offsetY: 0.3
+    offsetZ: 0.3
+    count: 25
+  sound:
+    enable: true
+    type: BLOCK_AMETHYST_BLOCK_BREAK
+    volume: 0.75F
+    pitch: 1.00F
+BEETROOTS:
+  enable: true
+  max-age: 3
+  experience:
+    enable: true
+    chance: 30
+    amount: 1
+  particle:
+    enable: true
+    type: TOTEM
+    offsetX: 0.3
+    offsetY: 0.3
+    offsetZ: 0.3
+    count: 25
+  sound:
+    enable: true
+    type: BLOCK_AMETHYST_BLOCK_BREAK
+    volume: 0.75F
+    pitch: 1.00F
+COCOA:
+  enable: true
+  max-age: 3
+  experience:
+    enable: true
+    chance: 30
+    amount: 1
+  particle:
+    enable: true
+    type: TOTEM
+    offsetX: 0.3
+    offsetY: 0.3
+    offsetZ: 0.3
+    count: 25
+  sound:
+    enable: true
+    type: BLOCK_AMETHYST_BLOCK_BREAK
+    volume: 0.75F
+    pitch: 1.00F
+NETHER_WART:
+  enable: true
+  max-age: 3
+  experience:
+    enable: true
+    chance: 30
+    amount: 1
+  particle:
+    enable: true
+    type: TOTEM
+    offsetX: 0.3
+    offsetY: 0.3
+    offsetZ: 0.3
+    count: 25
+  sound:
+    enable: true
+    type: BLOCK_AMETHYST_BLOCK_BREAK
+    volume: 0.75F
+    pitch: 1.00F
