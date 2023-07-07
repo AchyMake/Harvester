@@ -47,9 +47,15 @@ public class BlocksConfig {
     public void dropItems(Player player, Block block) {
         if (player.getInventory().getItemInMainHand().containsEnchantment(Enchantment.LOOT_BONUS_BLOCKS)) {
             int amount = player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS);
-            for (ItemStack drops : block.getDrops()) {
-                drops.setAmount(drops.getAmount() + amount);
-                player.getWorld().dropItem(block.getLocation().add(0.5,0.3,0.5), drops);
+            if (new Random().nextInt(100) >= 70) {
+                for (ItemStack drops : block.getDrops()) {
+                    drops.setAmount(drops.getAmount() + amount);
+                    player.getWorld().dropItem(block.getLocation().add(0.5,0.3,0.5), drops);
+                }
+            } else {
+                for (ItemStack drops : block.getDrops()) {
+                    player.getWorld().dropItem(block.getLocation().add(0.5,0.3,0.5), drops);
+                }
             }
         } else {
             for (ItemStack drops : block.getDrops()) {
