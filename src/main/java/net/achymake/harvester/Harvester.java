@@ -62,12 +62,12 @@ public final class Harvester extends JavaPlugin {
         commands();
         events();
         reload();
-        sendLog(Level.INFO, "Enabled " + this.getName() + " " + this.getDescription().getVersion());
+        sendLog(Level.INFO, "Enabled " + getName() + " " + getDescription().getVersion());
         getUpdate();
     }
     @Override
     public void onDisable() {
-        sendLog(Level.INFO, "Disabled " + this.getName() + " " + this.getDescription().getVersion());
+        sendLog(Level.INFO, "Disabled " + getName() + " " + getDescription().getVersion());
     }
     private void commands() {
         getCommand("harvester").setExecutor(new HarvesterCommand());
