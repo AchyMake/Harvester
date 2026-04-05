@@ -1,0 +1,96 @@
+package org.achymake.harvester.handlers;
+
+import org.achymake.harvester.Harvester;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.data.Ageable;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.inventory.ItemStack;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class BlockHandler {
+    private Harvester getInstance() {
+        return Harvester.getInstance();
+    }
+    private FileConfiguration getConfig() {
+        return getInstance().getConfig();
+    }
+    private MaterialHandler getMaterialHandler() {
+        return getInstance().getMaterialHandler();
+    }
+    private RandomHandler getRandomHandler() {
+        return getInstance().getRandomHandler();
+    }
+    private WorldHandler getWorldHandler() {
+        return getInstance().getWorldHandler();
+    }
+    public boolean isEnable(Block block) {
+        return getConfig().getBoolean("blocks." + block.getType() + ".enable");
+    }
+    public int getAge(Block block) {
+        if (block.getBlockData() instanceof Ageable ageable) {
+            return ageable.getAge();
+        } else return 0;
+    }
+    public boolean isRightAge(Block block) {
+        return getAge(block) >= getConfig().getInt("blocks." + block.getType() + ".max-age");
+    }
+    public void playSound(Block block) {
+        var type = getConfig().getString("replant.sound");
+        if (type == null)return;
+        var volume = getRandomHandler().nextDouble(0.75, 1.0);
+        var pitch = getRandomHandler().nextDouble(0.75, 1.0);
+        getWorldHandler().playSound(block.getLocation().add(0.5, 0.3, 0.5), type, volume, pitch);
+    }
+    public boolean isExperienceEnable(Block block) {
+        return getConfig().getBoolean("blocks." + block.getType() + ".experience.enable");
+    }
+    public double getExperienceChance(Block block) {
+        return getConfig().getDouble("blocks." + block.getType() + ".experience.chance");
+    }
+    public int getExperienceAmount(Block block) {
+        return getConfig().getInt("blocks." + block.getType() + ".experience.amount");
+    }
+    public List<ItemStack> getDrops(Material material, int fortune) {
+        var listed = new ArrayList<ItemStack>();
+        var section = getConfig().getConfigurationSection("blocks." + material + ".drops");
+        if (section != null) {
+            for (var key : section.getKeys(false)) {
+                var chance = section.getDouble(key + ".chance");
+                if (getRandomHandler().isTrue(chance)) {
+                    var materialName = section.getString(key + ".type");
+                    if (materialName != null) {
+                        if (section.isInt(key + ".amount")) {
+                            var amount = section.getInt(key + ".amount");
+                            if (section.getBoolean(key + ".fortune-able")) {
+                                if (getRandomHandler().isTrue(fortune * 0.12)) {
+                                    var extra = getRandomHandler().nextInt(1, fortune + 1);
+                                    listed.add(getMaterialHandler().getItemStack(materialName, amount + extra));
+                                } else listed.add(getMaterialHandler().getItemStack(materialName, amount));
+                            } else listed.add(getMaterialHandler().getItemStack(materialName, amount));
+                        } else {
+                            var min = section.getInt(key + ".amount.min");
+                            var max = section.getInt(key + ".amount.max");
+                            var amount = getRandomHandler().nextInt(min, max);
+                            if (section.getBoolean(key + ".fortune-able")) {
+                                if (getRandomHandler().isTrue(fortune * 0.12)) {
+                                    var extra = getRandomHandler().nextInt(1, fortune + 1);
+                                    listed.add(getMaterialHandler().getItemStack(materialName, amount + extra));
+                                } else listed.add(getMaterialHandler().getItemStack(materialName, amount));
+                            } else listed.add(getMaterialHandler().getItemStack(materialName, amount));
+                        }
+                    }
+                }
+            }
+        }
+        return listed;
+    }
+    public void resetAge(Block block) {
+        if (block.getBlockData() instanceof Ageable ageable) {
+            ageable.setAge(0);
+            block.setBlockData(ageable);
+        } else block.setType(getMaterialHandler().get("air"), true);
+    }
+}

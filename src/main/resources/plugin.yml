@@ -1,0 +1,35 @@
+name: Harvester
+version: '${project.version}'
+main: org.achymake.harvester.Harvester
+api-version: '1.21.11'
+prefix: '${project.name}'
+load: POSTWORLD
+depend:
+  - WorldGuard
+author: AchyMake
+description: '${project.description}'
+website: '${project.url}'
+commands:
+  harvester:
+    description: harvester command
+    permission: harvester.command.harvester
+    permission-message: You do not have the permissions to execute the command
+permissions:
+  harvester.command.harvester:
+    description: harvester command
+    default: op
+  harvester.event.replant:
+    description: allows to replant with all
+    default: op
+    children:
+      - harvester.event.replant.hand
+      - harvester.event.replant.hoe
+  harvester.event.replant.hand:
+    description: allows to replant with hand
+    default: op
+  harvester.event.replant.hoe:
+    description: allows to replant with all hoe
+    default: op
+  harvester.event.join.update:
+    description: gets update
+    default: op
