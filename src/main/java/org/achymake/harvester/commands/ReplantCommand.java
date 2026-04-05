@@ -16,7 +16,7 @@ public class ReplantCommand implements CommandExecutor, TabCompleter {
         return getInstance().getMessage();
     }
     public ReplantCommand() {
-        getInstance().getCommand("replant").setExecutor(this);
+        getInstance().getCommand("harvester").setExecutor(this);
     }
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
