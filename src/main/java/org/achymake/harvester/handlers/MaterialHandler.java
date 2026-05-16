@@ -34,8 +34,7 @@ public class MaterialHandler {
         if (itemStack == null)return;
         var rest = player.getInventory().addItem(itemStack).values();
         if (rest.isEmpty())return;
-        var location = player.getLocation();
-        rest.forEach(itemStacks -> getWorldHandler().spawnItem(location, itemStack));
+        rest.forEach(itemStacks -> getWorldHandler().spawnItem(player.getLocation(), itemStack));
     }
     public void giveItemStacks(Player player, Collection<ItemStack> itemStacks) {
         itemStacks.forEach(itemStack -> giveItemStack(player, itemStack));
