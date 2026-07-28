@@ -1,7 +1,7 @@
 name: Harvester
 version: '${project.version}'
 main: org.achymake.harvester.Harvester
-api-version: '26.1.2'
+api-version: '26.2'
 prefix: '${project.name}'
 load: POSTWORLD
 depend:

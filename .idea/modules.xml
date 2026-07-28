@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Harvester.iml" filepath="$PROJECT_DIR$/Harvester.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Harvester.iml" filepath="$PROJECT_DIR$/.idea/Harvester.iml" />
     </modules>
   </component>
 </project>
