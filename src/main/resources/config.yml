@@ -19,7 +19,7 @@ blocks:
     damage: 1
     drops:
       melon:
-        type: MELON
+        type: MELON_SLICE
         fortune-able: false
         chance: 1.0
         amount:
@@ -91,7 +91,7 @@ blocks:
         amount: 1
       wheat_seeds:
         type: WHEAT_SEEDS
-        fortune-able: true
+        fortune-able: false
         chance: 1.0
         amount:
           min: 1
@@ -112,7 +112,7 @@ blocks:
         amount: 1
       beetroot_seeds:
         type: BEETROOT_SEEDS
-        fortune-able: true
+        fortune-able: false
         chance: 1.0
         amount:
           min: 1
