@@ -2,7 +2,6 @@ package org.achymake.harvester.handlers;
 
 import com.sk89q.worldedit.bukkit.BukkitAdapter;
 import com.sk89q.worldedit.math.BlockVector3;
-import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.protection.ApplicableRegionSet;
 import com.sk89q.worldguard.protection.flags.StateFlag;
 import com.sk89q.worldguard.protection.regions.ProtectedCuboidRegion;
@@ -22,8 +21,18 @@ public class WorldHandler {
     private FileConfiguration getConfig() {
         return getInstance().getConfig();
     }
-    private WorldGuard getWorldGuard() {
-        return getInstance().getWorldGuard();
+    private boolean isAllowed(ApplicableRegionSet applicableRegionSet) {
+        for (var regionIn : applicableRegionSet) {
+            if (regionIn != null) {
+                var flag = regionIn.getFlag(getInstance().getFlag());
+                if (flag == StateFlag.State.ALLOW) {
+                    return true;
+                } else if (flag == StateFlag.State.DENY) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
     public ExperienceOrb spawnExperience(Location location, int amount) {
         var world = location.getWorld();
@@ -48,7 +57,7 @@ public class WorldHandler {
     public boolean isReplantAllowed(Block block) {
         var world = block.getWorld();
         if (getConfig().getStringList("replant.worlds").contains(world.getName())) {
-            var regionManager = getWorldGuard().getPlatform().getRegionContainer().get(BukkitAdapter.adapt(world));
+            var regionManager = getInstance().getWorldGuard().getPlatform().getRegionContainer().get(BukkitAdapter.adapt(world));
             if (regionManager != null) {
                 var x = block.getX();
                 var y = block.getY();
@@ -58,18 +67,5 @@ public class WorldHandler {
                 return isAllowed(regionManager.getApplicableRegions(protectedCuboidRegion));
             } else return true;
         } else return false;
-    }
-    private boolean isAllowed(ApplicableRegionSet applicableRegionSet) {
-        for (var regionIn : applicableRegionSet) {
-            if (regionIn != null) {
-                var flag = regionIn.getFlag(getInstance().getFlag());
-                if (flag == StateFlag.State.ALLOW) {
-                    return true;
-                } else if (flag == StateFlag.State.DENY) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 }

@@ -54,7 +54,7 @@ public class BlockHandler {
         return getConfig().getInt("blocks." + block.getType() + ".experience.amount");
     }
     public List<ItemStack> getDrops(Material material, int fortune) {
-        var listed = new ArrayList<ItemStack>();
+        var drops = new ArrayList<ItemStack>();
         var section = getConfig().getConfigurationSection("blocks." + material + ".drops");
         if (section != null) {
             for (var key : section.getKeys(false)) {
@@ -67,9 +67,9 @@ public class BlockHandler {
                             if (section.getBoolean(key + ".fortune-able")) {
                                 if (getRandomHandler().isTrue(fortune * 0.12)) {
                                     var extra = getRandomHandler().nextInt(1, fortune + 1);
-                                    listed.add(getMaterialHandler().getItemStack(materialName, amount + extra));
-                                } else listed.add(getMaterialHandler().getItemStack(materialName, amount));
-                            } else listed.add(getMaterialHandler().getItemStack(materialName, amount));
+                                    drops.add(getMaterialHandler().getItemStack(materialName, amount + extra));
+                                } else drops.add(getMaterialHandler().getItemStack(materialName, amount));
+                            } else drops.add(getMaterialHandler().getItemStack(materialName, amount));
                         } else {
                             var min = section.getInt(key + ".amount.min");
                             var max = section.getInt(key + ".amount.max");
@@ -77,15 +77,15 @@ public class BlockHandler {
                             if (section.getBoolean(key + ".fortune-able")) {
                                 if (getRandomHandler().isTrue(fortune * 0.12)) {
                                     var extra = getRandomHandler().nextInt(1, fortune + 1);
-                                    listed.add(getMaterialHandler().getItemStack(materialName, amount + extra));
-                                } else listed.add(getMaterialHandler().getItemStack(materialName, amount));
-                            } else listed.add(getMaterialHandler().getItemStack(materialName, amount));
+                                    drops.add(getMaterialHandler().getItemStack(materialName, amount + extra));
+                                } else drops.add(getMaterialHandler().getItemStack(materialName, amount));
+                            } else drops.add(getMaterialHandler().getItemStack(materialName, amount));
                         }
                     }
                 }
             }
         }
-        return listed;
+        return drops;
     }
     public void resetAge(Block block) {
         if (block.getBlockData() instanceof Ageable ageable) {

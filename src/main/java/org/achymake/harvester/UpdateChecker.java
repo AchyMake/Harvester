@@ -35,7 +35,7 @@ public class UpdateChecker {
     public void getUpdate(Player player) {
         if (!player.hasPermission("replant.event.join.update"))return;
         if (!getConfig().getBoolean("notify-update"))return;
-        getScheduleHandler().runLater(() -> getLatest((latest) -> {
+        getScheduleHandler().runTaskLater(() -> getLatest((latest) -> {
             if (getVersion().equals(latest))return;
             player.sendMessage(getMessage().addColor(getName() + "&6 has new update"));
             player.sendMessage(getMessage().addColor("-&a https://www.spigotmc.org/resources/" + getResourceID() + "/"));

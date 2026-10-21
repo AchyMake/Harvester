@@ -26,9 +26,11 @@ public class ReplantCommand implements CommandExecutor, TabCompleter {
                 return true;
             } else if (args.length == 1) {
                 if (args[0].equalsIgnoreCase("reload")) {
-                    getInstance().reload();
-                    player.sendMessage(getMessage().addColor("&6" + getInstance().name() + "&f: reloaded"));
-                    return true;
+                    if (player.hasPermission("harvester.command.harvester.reload")) {
+                        getInstance().reload();
+                        player.sendMessage(getMessage().addColor("&6" + getInstance().name() + "&f: reloaded"));
+                        return true;
+                    }
                 }
             }
         } else if (sender instanceof ConsoleCommandSender consoleCommandSender) {
